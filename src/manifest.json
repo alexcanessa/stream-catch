@@ -1,0 +1,23 @@
+{
+    "manifest_version": 2,
+
+    "name": "Stream video catch",
+    "description": "Download videos from a page",
+    "version": "0.1.0",
+
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_popup": "popup.html"
+    },
+
+    "background": {
+        "scripts": ["scripts/background.js"]
+    },
+
+    "permissions": [
+        "activeTab",
+        "webRequest",
+        "webRequestBlocking",
+        "<all_urls>"
+    ]
+}
