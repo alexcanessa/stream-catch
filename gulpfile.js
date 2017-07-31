@@ -14,9 +14,9 @@ gulp.task('sass', () => {
 gulp.task('copy', () => {
     return gulp.src([
             './src/manifest.json',
-            './src/icon.png',
-            './src/popup.html'
-        ])
+            './src/popup.html',
+            './src/icons/**/*.png'
+        ], { base: './src/'})
         .pipe(gulp.dest('./dist'));
 });
 

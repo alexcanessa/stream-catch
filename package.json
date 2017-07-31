@@ -2,7 +2,7 @@
   "name": "stream-catch",
   "version": "0.1.0",
   "description": "Catch a video from a streaming page and download the source",
-  "main": "dist/popup.html",
+  "main": "dist/scripts/index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register"
   },
