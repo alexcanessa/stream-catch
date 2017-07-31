@@ -22,7 +22,9 @@ gulp.task('copy', () => {
 
 gulp.task('scripts', () => {
     return gulp.src('./src/**/*.js')
-        .pipe(babel())
+        .pipe(babel({
+            presets: ['es2015']
+        }))
         .pipe(gulp.dest('dist'));
 });
 
