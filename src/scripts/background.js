@@ -7,6 +7,10 @@ const updateBadge = tabId => {
     chrome.browserAction.setBadgeText({text: '1', tabId});
 };
 const saveUrl = requestDetails => {
+    if (!requestDetails.url.match(/.(mp4|avi|mov|wmv)$/i)) {
+        return;
+    }
+
     chrome.tabs.query({currentWindow: true, active: true}, ([{ id }]) => {
         infos.badges[id] = requestDetails.url;
 
