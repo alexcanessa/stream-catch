@@ -8,7 +8,7 @@ const ghPages = require('gulp-gh-pages');
 const zip = require('gulp-zip');
 
 gulp.task('zip', ['build'], function() {
-    return gulp.src(['./dist/*', '!./dist/stream-catch.zip'])
+    return gulp.src(['./dist/**', '!./dist/stream-catch.zip'])
         .pipe(zip('stream-catch.zip'))
         .pipe(gulp.dest('./dist'));
 });
