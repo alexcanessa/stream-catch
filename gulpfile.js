@@ -4,6 +4,19 @@ const mocha = require('gulp-mocha');
 const eslint = require('gulp-eslint');
 const watch = require('gulp-watch');
 const sass = require('gulp-sass');
+const ghPages = require('gulp-gh-pages');
+const zip = require('gulp-zip');
+
+gulp.task('zip', function() {
+    return gulp.src(['./dist/*', '!./dist/stream-catch.zip'])
+        .pipe(zip('stream-catch.zip'))
+        .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('ghpages', function() {
+  return gulp.src('./dist/**/*')
+    .pipe(ghPages());
+});
 
 gulp.task('sass', () => {
     return gulp.src('./src/styles/**/*.scss')
@@ -56,5 +69,6 @@ gulp.task('test', () => {
 		}));
 });
 
-gulp.task('build', ['lint', 'scripts', /*'test',*/ 'sass', 'copy']);
+gulp.task('build', ['lint', 'scripts', /*'test',*/ 'sass', 'copy', 'zip']);
+gulp.task('deploy', ['build', 'ghpages']);
 gulp.task('default', ['build', 'watch']);
