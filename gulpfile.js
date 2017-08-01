@@ -7,13 +7,13 @@ const sass = require('gulp-sass');
 const ghPages = require('gulp-gh-pages');
 const zip = require('gulp-zip');
 
-gulp.task('zip', function() {
+gulp.task('zip', ['build'], function() {
     return gulp.src(['./dist/*', '!./dist/stream-catch.zip'])
         .pipe(zip('stream-catch.zip'))
         .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('ghpages', function() {
+gulp.task('deploy', ['zip'], function() {
   return gulp.src('./dist/**/*')
     .pipe(ghPages());
 });
@@ -27,7 +27,7 @@ gulp.task('sass', () => {
 gulp.task('copy', () => {
     return gulp.src([
             './src/manifest.json',
-            './src/popup.html',
+            './src/**/*.html',
             './src/icons/**/*.png'
         ], { base: './src/'})
         .pipe(gulp.dest('./dist'));
@@ -69,6 +69,5 @@ gulp.task('test', () => {
 		}));
 });
 
-gulp.task('build', ['lint', 'scripts', /*'test',*/ 'sass', 'copy', 'zip']);
-gulp.task('deploy', ['build', 'ghpages']);
+gulp.task('build', ['lint', 'scripts', /*'test',*/ 'sass', 'copy']);
 gulp.task('default', ['build', 'watch']);
